@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security.Policy;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using static System.Net.WebRequestMethods;
 
 namespace WPFSerialAssistant
 {
@@ -142,7 +145,11 @@ namespace WPFSerialAssistant
 
         private void helpMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/tylhk/SerialAssistant",
+                UseShellExecute = true
+            });
         }
         #endregion
 
@@ -361,7 +368,7 @@ namespace WPFSerialAssistant
             }
 
             // 提示是否需要保存配置到文件中
-            if (MessageBox.Show("是否在退出前保存软件配置？", "小贴士", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+            if (MessageBox.Show("是否在退出前保存软件配置？", "提示", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
                 SaveConfig();
             }

@@ -124,5 +124,55 @@ namespace WPFSerialAssistant
                 SaveCommands();
             }
         }
+        // 字号控制参数
+        private const double DefaultFontSize = 14;  // 默认字号（与XAML中FlowDocument设置一致）
+        private const double MinFontSize = 8;      // 最小字号
+        private const double MaxFontSize = 36;     // 最大字号
+        private const double FontStep = 2;         // 字号调整步长
+
+        // 放大字号
+        private void IncreaseFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            if (recvDataRichTextBox.FontSize + FontStep <= MaxFontSize)
+            {
+                recvDataRichTextBox.FontSize += FontStep;
+                UpdateDocumentFontSize(recvDataRichTextBox.Document, recvDataRichTextBox.FontSize);
+            }
+        }
+
+        // 缩小字号
+        private void DecreaseFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            if (recvDataRichTextBox.FontSize - FontStep >= MinFontSize)
+            {
+                recvDataRichTextBox.FontSize -= FontStep;
+                UpdateDocumentFontSize(recvDataRichTextBox.Document, recvDataRichTextBox.FontSize);
+            }
+        }
+
+        // 重置字号
+        private void ResetFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            recvDataRichTextBox.FontSize = DefaultFontSize;
+            UpdateDocumentFontSize(recvDataRichTextBox.Document, DefaultFontSize);
+        }
+
+        // 更新文档内所有文字字号（兼容已有内容）
+        private void UpdateDocumentFontSize(FlowDocument document, double newSize)
+        {
+            foreach (var block in document.Blocks)
+            {
+                if (block is Paragraph paragraph)
+                {
+                    foreach (var inline in paragraph.Inlines)
+                    {
+                        if (inline is Run run)
+                        {
+                            run.FontSize = newSize;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
