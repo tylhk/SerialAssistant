@@ -1,0 +1,14 @@
+﻿<Window x:Class="WPFSerialAssistant.InputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
+    <StackPanel Margin="10">
+        <TextBlock Name="promptText1" Margin="0,0,0,5"/>
+        <TextBox Name="answerTextBox1" Margin="0,0,0,10"/>
+        <TextBlock Name="promptText2" Margin="0,0,0,5"/>
+        <TextBox Name="answerTextBox2" Margin="0,0,0,10"/>
+        <Button Content="确定" Click="OkButton_Click" HorizontalAlignment="Right" Padding="15,3"/>
+    </StackPanel>
+</Window>

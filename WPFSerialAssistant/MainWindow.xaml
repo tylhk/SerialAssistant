@@ -29,7 +29,8 @@
             
             <MenuItem Header="视图(_V)">
                 <MenuItem Name="serialSettingViewMenuItem" Header="串口配置面板" IsChecked="True" Click="serialSettingViewMenuItem_Click"></MenuItem>
-                <MenuItem Name="autoSendDataSettingViewMenuItem" Header="自动发送设置面板" IsChecked="True" Click="autoSendDataSettingViewMenuItem_Click"></MenuItem>
+                <MenuItem Name="commonCommandsViewMenuItem" Header="常用命令面板" IsChecked="True" Click="CommonCommandsViewMenuItem_Click"></MenuItem>
+            <MenuItem Name="autoSendDataSettingViewMenuItem" Header="自动发送设置面板" IsChecked="True" Click="autoSendDataSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="serialCommunicationSettingViewMenuItem" Header="通信设置面板" IsChecked="True" Click="serialCommunicationSettingViewMenuItem_Click"></MenuItem>
                 <MenuItem Name="compactViewMenuItem" Header="简洁视图" IsChecked="False" Click="compactViewMenuItem_Click" Visibility="Visible"></MenuItem>
             </MenuItem>
@@ -170,6 +171,26 @@
                     </GroupBox>
                 </Grid>
                 </ScrollViewer>
+                
+                <Grid Name="commonCommandsPanel" DockPanel.Dock="Left" Margin="5,5,0,5" Visibility="Visible">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <GroupBox Header="常用命令" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}">
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5">
+                                    <Button Name="addCommandBtn" Content="+" Width="25" Click="AddCommand_Click"/>
+                                    <Button Name="removeCommandBtn" Content="-" Width="25" Click="RemoveCommand_Click" Margin="5,0,0,0"/>
+                                </StackPanel>
+                                <ListBox Name="cmdListBox" SelectionChanged="CmdListBox_SelectionChanged">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" ToolTip="{Binding Value}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DockPanel>
+                        </GroupBox>
+                    </ScrollViewer>
+                </Grid>
                 
                 <Grid Name="serialCommunicationConfigPanel" DockPanel.Dock="Right" Margin="0,5,5,5" Visibility="Visible">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
