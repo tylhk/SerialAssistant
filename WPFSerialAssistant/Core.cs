@@ -78,15 +78,6 @@ namespace WPFSerialAssistant
 
         #endregion
 
-        private void RecvDataBoxAppend(string textData)
-        {
-            if (showRecvDataCheckBox.IsChecked == true)
-            {
-                this.recvDataRichTextBox.AppendText(textData);
-                this.recvDataRichTextBox.ScrollToEnd();
-            }
-        }
-
         private bool SendData()
         {
             string textToSend = sendDataTextBox.Text;

@@ -41,7 +41,7 @@
         <!--状态栏-->
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Background="#FF007ACC" Padding="2">
             <StatusBarItem HorizontalAlignment="Left">
-                <TextBlock Name="statusInfoTextBlock" Foreground="White">欢迎使用串口助手！</TextBlock>
+                <TextBlock Name="statusInfoTextBlock" Foreground="White">欢迎使用</TextBlock>
             </StatusBarItem>
             <StatusBarItem>
                 <ProgressBar Name="progressBar" Foreground="White" BorderBrush="White" Background="{Binding ElementName=statusBar, Path=Background}" Visibility="Collapsed" Width="150" Height="10" Value="10" SmallChange="1" IsIndeterminate="True" Margin="10,0,0,0"></ProgressBar>
@@ -158,12 +158,8 @@
                             </Grid>
                             <!--空的Grid，占位用-->
                             <Grid>
-                                <StackPanel Margin="5">
-                                    <TextBlock Foreground="#FF0078D7" FontSize="16" Padding="5">主要功能：</TextBlock>
-                                    <TextBlock Padding="5">1. 可自由显示、隐藏的设置面板</TextBlock>
-                                    <TextBlock Padding="5">2. 简洁视图模式，专注于数据收发</TextBlock>
-                                    <TextBlock Padding="5">3. 软件主要配置可保存并恢复</TextBlock>
-                                    <TextBlock Foreground="#FF0078D7" FontSize="16" Padding="5">快捷键提示：</TextBlock>
+                                    <StackPanel Margin="5">
+                                        <TextBlock Foreground="#FF0078D7" FontSize="16" Padding="5">快捷键：</TextBlock>
                                     <TextBlock Padding="5">1. Ctrl+S: 保存接收区数据</TextBlock>
                                     <TextBlock Padding="5">2. Ctrl+Enter: 进/退简洁视图模式</TextBlock>
                                     <TextBlock Padding="5">3. Enter: 发送数据</TextBlock>

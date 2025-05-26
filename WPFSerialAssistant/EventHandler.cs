@@ -491,6 +491,7 @@ namespace WPFSerialAssistant
 
         private void ReceivedDataHandler(object obj)
         {
+
             List<byte> recvBuffer = new List<byte>();
             recvBuffer.AddRange((List<byte>)obj);
 
@@ -506,8 +507,13 @@ namespace WPFSerialAssistant
             {
                 if (showReceiveData)
                 {
-                    // 根据显示模式显示接收到的字节.
-                    recvDataRichTextBox.AppendText(Utilities.BytesToText(recvBuffer, receiveMode, serialPort.Encoding));
+                    string timestamp = DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
+                    // 转换数据为文本
+                    string dataText = Utilities.BytesToText(recvBuffer, receiveMode, serialPort.Encoding);
+                    // 拼接时间戳和数据
+                    string displayText = timestamp + dataText;
+
+                    recvDataRichTextBox.AppendText(displayText);
                     recvDataRichTextBox.ScrollToEnd();
                 }
 
