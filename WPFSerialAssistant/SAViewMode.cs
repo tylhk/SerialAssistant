@@ -39,21 +39,25 @@ namespace WPFSerialAssistant
             panelVisibilityStack.Push(serialPortConfigPanel.Visibility);
             panelVisibilityStack.Push(autoSendConfigPanel.Visibility);
             panelVisibilityStack.Push(serialCommunicationConfigPanel.Visibility);
+            panelVisibilityStack.Push(commonCommandsViewMenuItem.Visibility);
 
             // 进入简洁视图模式
             serialPortConfigPanel.Visibility = Visibility.Collapsed;
             autoSendConfigPanel.Visibility = Visibility.Collapsed;
             serialCommunicationConfigPanel.Visibility = Visibility.Collapsed;
+            commonCommandsPanel.Visibility = Visibility.Collapsed;
 
             // 把对应的菜单项取消选中
             serialSettingViewMenuItem.IsChecked = false;
             autoSendDataSettingViewMenuItem.IsChecked = false;
             serialCommunicationSettingViewMenuItem.IsChecked = false;
+            commonCommandsViewMenuItem.IsChecked = false;
 
             // 此时无法视图模式，必须恢复到原先的视图模式才可以
             serialSettingViewMenuItem.IsEnabled = false;
             autoSendDataSettingViewMenuItem.IsEnabled = false;
             serialCommunicationSettingViewMenuItem.IsEnabled = false;
+            commonCommandsViewMenuItem.IsEnabled = false;
 
             // 切换至简洁视图模式，菜单项选中
             compactViewMenuItem.IsChecked = true;
@@ -71,7 +75,7 @@ namespace WPFSerialAssistant
             serialCommunicationConfigPanel.Visibility = panelVisibilityStack.Pop();
             autoSendConfigPanel.Visibility = panelVisibilityStack.Pop();
             serialPortConfigPanel.Visibility = panelVisibilityStack.Pop();
-
+            commonCommandsViewMenuItem.Visibility = panelVisibilityStack.Pop();
             // 恢复菜单选中状态
             if (serialPortConfigPanel.Visibility == Visibility.Visible)
             {
@@ -88,9 +92,15 @@ namespace WPFSerialAssistant
                 serialCommunicationSettingViewMenuItem.IsChecked = true;
             }
 
+            if (commonCommandsPanel.Visibility == Visibility.Visible)
+            {
+                commonCommandsViewMenuItem.IsChecked = true;
+            }
+
             serialSettingViewMenuItem.IsEnabled = true;
             autoSendDataSettingViewMenuItem.IsEnabled = true;
             serialCommunicationSettingViewMenuItem.IsEnabled = true;
+            commonCommandsViewMenuItem.IsChecked = true;
 
             compactViewMenuItem.IsChecked = false;
 
