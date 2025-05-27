@@ -29,28 +29,44 @@ namespace WPFSerialAssistant
         private readonly object _batchLock = new object(); // 线程锁
 
         private static readonly string ConfigFolder =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WPFSerialAssistant");
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WPFSerialAssistant");
 
         private static readonly string CommandsFilePath =
             Path.Combine(ConfigFolder, "commands.json");
 
+        private List<List<CommandItem>> allPagesCommands = new List<List<CommandItem>>();
+        private CommandConfig commandConfig = new CommandConfig();
         // 保存命令列表到JSON文件
         private void SaveCommands()
         {
             try
             {
-                Directory.CreateDirectory(ConfigFolder); // 确保文件夹存在
-                var commands = cmdListBox.Items.Cast<CommandItem>().ToList();
-                string json = JsonConvert.SerializeObject(commands, Formatting.Indented);
+                // 确保文件夹存在
+                Directory.CreateDirectory(ConfigFolder);
+
+                // 将命令配置序列化为JSON字符串
+                string json = JsonConvert.SerializeObject(commandConfig, Formatting.Indented);
+
+                // 将JSON字符串写入文件
                 File.WriteAllText(CommandsFilePath, json);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                MessageBox.Show($"保存命令失败: 文件夹 {ConfigFolder} 不存在。{ex.Message}");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show($"保存命令失败: 没有权限访问文件 {CommandsFilePath}。{ex.Message}");
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show($"保存命令失败: 文件读写错误。{ex.Message}");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"保存命令失败: {ex.Message}");
             }
         }
-
-        // 从JSON文件加载命令列表
         private void LoadCommands()
         {
             try
@@ -58,12 +74,10 @@ namespace WPFSerialAssistant
                 if (File.Exists(CommandsFilePath))
                 {
                     string json = File.ReadAllText(CommandsFilePath);
-                    var commands = JsonConvert.DeserializeObject<List<CommandItem>>(json);
-                    cmdListBox.Items.Clear();
-                    foreach (var cmd in commands)
-                    {
-                        cmdListBox.Items.Add(cmd);
-                    }
+                    commandConfig = JsonConvert.DeserializeObject<CommandConfig>(json) ?? new CommandConfig();
+
+                    // 加载当前选中页面的命令
+                    LoadCurrentPageCommands();
                 }
             }
             catch (Exception ex)
@@ -71,7 +85,21 @@ namespace WPFSerialAssistant
                 MessageBox.Show($"加载命令失败: {ex.Message}");
             }
         }
+        // 从JSON文件加载命令列表
+        private void LoadCurrentPageCommands()
+        {
+            cmdListBox.Items.Clear();
 
+            if (commandConfig.AllPagesCommands != null &&
+                commandConfig.AllPagesCommands.Count > commandConfig.CurrentPageIndex)
+            {
+                var currentCommands = commandConfig.AllPagesCommands[commandConfig.CurrentPageIndex];
+                foreach (var cmd in currentCommands)
+                {
+                    cmdListBox.Items.Add(cmd);
+                }
+            }
+        }
 
         public MainWindow()
         {
@@ -95,21 +123,6 @@ namespace WPFSerialAssistant
             commonCommandsPanel.Visibility = menuItem.IsChecked ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        // 添加命令
-        private void AddCommand_Click(object sender, RoutedEventArgs e)
-        {
-            var inputDialog = new InputDialog("新建命令", "命令名称:", "命令内容:");
-            if (inputDialog.ShowDialog() == true)
-            {
-                cmdListBox.Items.Add(new CommandItem
-                {
-                    Name = inputDialog.Answer1,
-                    Value = inputDialog.Answer2
-                });
-                SaveCommands();
-            }
-        }
-
         // 使用命令
         private void CmdListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -120,15 +133,26 @@ namespace WPFSerialAssistant
             }
         }
 
-        // 删除命令
-        private void RemoveCommand_Click(object sender, RoutedEventArgs e)
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            if (cmdListBox.SelectedItem != null)
+            // 确保命令配置已初始化
+            if (commandConfig.AllPagesCommands == null)
+                commandConfig.AllPagesCommands = new List<List<CommandItem>>();
+
+            var settingsWindow = new CommandSettingsWindow(commandConfig);
+            if (settingsWindow.ShowDialog() == true)
             {
-                cmdListBox.Items.Remove(cmdListBox.SelectedItem);
+                // 更新命令配置
+                commandConfig.AllPagesCommands = settingsWindow.AllPagesCommands;
+                commandConfig.CurrentPageIndex = settingsWindow.CurrentPageIndex;
+
+                // 加载当前选中页面的命令
+                LoadCurrentPageCommands();
+
                 SaveCommands();
             }
         }
+
         // 字号控制参数
         private const double DefaultFontSize = 12;  // 默认字号（与XAML中FlowDocument设置一致）
         private const double MinFontSize = 8;      // 最小字号

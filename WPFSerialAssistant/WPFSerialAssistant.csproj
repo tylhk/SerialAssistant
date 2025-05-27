@@ -82,7 +82,11 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandConfig.cs" />
     <Compile Include="CommandItem.cs" />
+    <Compile Include="CommandSettingsWindow.xaml.cs">
+      <DependentUpon>CommandSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core.cs" />
     <Compile Include="InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
@@ -93,6 +97,10 @@
     <Compile Include="SAViewMode.cs" />
     <Compile Include="Utilities.cs" />
     <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommandSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

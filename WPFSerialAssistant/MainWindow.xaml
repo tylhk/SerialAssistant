@@ -171,14 +171,13 @@
                     </GroupBox>
                 </Grid>
                 </ScrollViewer>
-                
+
                 <Grid Name="commonCommandsPanel" DockPanel.Dock="Left" Margin="5,5,0,5" Visibility="Visible">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <GroupBox Header="常用命令" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}">
                             <DockPanel>
-                                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,5">
-                                    <Button Name="addCommandBtn" Content="+" Width="25" Click="AddCommand_Click"/>
-                                    <Button Name="removeCommandBtn" Content="-" Width="25" Click="RemoveCommand_Click" Margin="5,0,0,0"/>
+                                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,5">
+                                    <Button Name="settingsButton" Content="设置" Click="SettingsButton_Click"/>
                                 </StackPanel>
                                 <ListBox Name="cmdListBox" SelectionChanged="CmdListBox_SelectionChanged">
                                     <ListBox.ItemTemplate>
@@ -191,7 +190,8 @@
                         </GroupBox>
                     </ScrollViewer>
                 </Grid>
-                
+
+
                 <Grid Name="serialCommunicationConfigPanel" DockPanel.Dock="Right" Margin="0,5,5,5" Visibility="Visible">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <GroupBox Header="通信设置面板" BorderBrush="{Binding ElementName=serialPortConfigPanel, Path=BorderBrush}" BorderThickness="{Binding ElementName=serialPortConfigPanel, Path=BorderThickness}">
