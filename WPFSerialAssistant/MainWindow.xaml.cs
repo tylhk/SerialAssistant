@@ -130,7 +130,7 @@ namespace WPFSerialAssistant
             }
         }
         // 字号控制参数
-        private const double DefaultFontSize = 14;  // 默认字号（与XAML中FlowDocument设置一致）
+        private const double DefaultFontSize = 12;  // 默认字号（与XAML中FlowDocument设置一致）
         private const double MinFontSize = 8;      // 最小字号
         private const double MaxFontSize = 36;     // 最大字号
         private const double FontStep = 1;         // 字号调整步长
