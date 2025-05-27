@@ -22,11 +22,30 @@ namespace WPFSerialAssistant
             InitClockTimer();
             InitAutoSendDataTimer();
             InitSerialPort();
-
+            // 新增：初始化批量处理定时器（间隔设为100ms）
+            _batchTimer.Interval = TimeSpan.FromMilliseconds(100);
+            _batchTimer.Tick += BatchTimer_Tick;
+            _batchTimer.IsEnabled = true;
             // 查找可以使用的端口号
             FindPorts();
         }
-
+        private void BatchTimer_Tick(object sender, EventArgs e)
+        {
+            _batchTimer.Stop();
+            lock (_batchLock)
+            {
+                if (_batchBuffer.Length > 0)
+                {
+                    string timestamp = DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
+                    Dispatcher.Invoke(() =>
+                    {
+                        recvDataRichTextBox.AppendText(timestamp + _batchBuffer.ToString() + "\n");
+                        recvDataRichTextBox.ScrollToEnd();
+                    });
+                    _batchBuffer.Clear();
+                }
+            }
+        }
         #region 状态栏
         /// <summary>
         /// 更新时间信息

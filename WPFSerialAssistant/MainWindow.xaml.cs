@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Path = System.IO.Path;
 
 namespace WPFSerialAssistant
@@ -23,6 +24,10 @@ namespace WPFSerialAssistant
     /// </summary>
     public partial class MainWindow : Window
     {
+        private StringBuilder _batchBuffer = new StringBuilder(); // 合并短时间内的数据
+        private DispatcherTimer _batchTimer = new DispatcherTimer(); // 批量处理定时器
+        private readonly object _batchLock = new object(); // 线程锁
+
         private static readonly string ConfigFolder =
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WPFSerialAssistant");
 

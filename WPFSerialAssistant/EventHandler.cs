@@ -498,38 +498,32 @@ namespace WPFSerialAssistant
 
         private void ReceivedDataHandler(object obj)
         {
-
             List<byte> recvBuffer = new List<byte>();
             recvBuffer.AddRange((List<byte>)obj);
+            shouldClear = true;
 
             if (recvBuffer.Count == 0)
             {
                 return;
             }
 
-            // 必须应当保证全局缓冲区的数据能够被完整地备份出来，这样才能进行进一步的处理。
-            shouldClear = true;
+            // 将字节数据转换为文本
+            string dataText = Utilities.BytesToText(recvBuffer, receiveMode, serialPort.Encoding);
 
-            this.Dispatcher.Invoke(new Action(() =>
+            // 将数据暂存到批量缓冲区
+            lock (_batchLock)
             {
-                if (showReceiveData)
-                {
-                    string timestamp = DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
-                    // 转换数据为文本
-                    string dataText = Utilities.BytesToText(recvBuffer, receiveMode, serialPort.Encoding);
-                    // 拼接时间戳和数据
-                    string displayText = timestamp + dataText;
+                _batchBuffer.Append(dataText);
+            }
 
-                    recvDataRichTextBox.AppendText(displayText);
-                    recvDataRichTextBox.ScrollToEnd();
-                }
-
-                dataRecvStatusBarItem.Visibility = Visibility.Collapsed;
-            }));
-
-            // TO-DO：
-            // 处理数据，比如解析指令等等
+            // 重置批量处理定时器（停止后重新启动）
+            Dispatcher.Invoke(() =>
+            {
+                _batchTimer.Stop();
+                _batchTimer.Start();
+            });
         }
+
         #endregion
     }
 }
