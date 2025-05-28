@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 //using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace WPFSerialAssistant
@@ -39,7 +40,10 @@ namespace WPFSerialAssistant
                     string timestamp = DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss] ");
                     Dispatcher.Invoke(() =>
                     {
-                        recvDataRichTextBox.AppendText(timestamp + _batchBuffer.ToString() + "\n");
+                        Paragraph para = new Paragraph();
+                        Run run = new Run(timestamp + _batchBuffer.ToString() + "\n");
+                        para.Inlines.Add(run);
+                        recvDataRichTextBox.Document.Blocks.Add(para);
                         recvDataRichTextBox.ScrollToEnd();
                     });
                     _batchBuffer.Clear();

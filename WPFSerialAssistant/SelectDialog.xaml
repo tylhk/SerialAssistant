@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPFSerialAssistant.SelectDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFSerialAssistant"
+        mc:Ignorable="d"
+        Title="SelectDialog" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="请选择要批量发送的类型：" Margin="0,0,0,10"/>
+            <ComboBox x:Name="cbTypes" Height="28" Margin="0,0,0,10"/>
+            <Button Content="确定" Width="60" Click="BtnOK_Click" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </Grid>
+</Window>

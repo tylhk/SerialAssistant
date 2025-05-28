@@ -10,7 +10,7 @@ namespace WPFSerialAssistant
     public partial class MainWindow : Window
     {
         // 保存面板的显示状态
-        private Stack<Visibility> panelVisibilityStack = new Stack<Visibility>(3);
+        private Stack<Visibility> panelVisibilityStack = new Stack<Visibility>(4);
 
         /// <summary>
         /// 判断是否处于简洁视图模式
@@ -20,7 +20,8 @@ namespace WPFSerialAssistant
         {
             if (autoSendConfigPanel.Visibility == Visibility.Collapsed && 
                 serialCommunicationConfigPanel.Visibility == Visibility.Collapsed &&
-                autoSendConfigPanel.Visibility ==  Visibility.Collapsed)
+                autoSendConfigPanel.Visibility ==  Visibility.Collapsed &&
+                commonCommandsPanel.Visibility == Visibility.Collapsed)
             {
                 return true;
             }
@@ -39,7 +40,7 @@ namespace WPFSerialAssistant
             panelVisibilityStack.Push(serialPortConfigPanel.Visibility);
             panelVisibilityStack.Push(autoSendConfigPanel.Visibility);
             panelVisibilityStack.Push(serialCommunicationConfigPanel.Visibility);
-            panelVisibilityStack.Push(commonCommandsViewMenuItem.Visibility);
+            panelVisibilityStack.Push(commonCommandsPanel.Visibility);
 
             // 进入简洁视图模式
             serialPortConfigPanel.Visibility = Visibility.Collapsed;
@@ -62,7 +63,6 @@ namespace WPFSerialAssistant
             // 切换至简洁视图模式，菜单项选中
             compactViewMenuItem.IsChecked = true;
 
-            // 
             Information("进入简洁视图模式。");
         }
 
@@ -72,10 +72,11 @@ namespace WPFSerialAssistant
         private void RestoreViewMode()
         {
             // 恢复面板显示状态
+            commonCommandsPanel.Visibility = panelVisibilityStack.Pop();
             serialCommunicationConfigPanel.Visibility = panelVisibilityStack.Pop();
             autoSendConfigPanel.Visibility = panelVisibilityStack.Pop();
             serialPortConfigPanel.Visibility = panelVisibilityStack.Pop();
-            commonCommandsViewMenuItem.Visibility = panelVisibilityStack.Pop();
+
             // 恢复菜单选中状态
             if (serialPortConfigPanel.Visibility == Visibility.Visible)
             {
@@ -100,7 +101,7 @@ namespace WPFSerialAssistant
             serialSettingViewMenuItem.IsEnabled = true;
             autoSendDataSettingViewMenuItem.IsEnabled = true;
             serialCommunicationSettingViewMenuItem.IsEnabled = true;
-            commonCommandsViewMenuItem.IsChecked = true;
+            commonCommandsViewMenuItem.IsEnabled = true;
 
             compactViewMenuItem.IsChecked = false;
 

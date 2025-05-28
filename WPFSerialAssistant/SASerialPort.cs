@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 //using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace WPFSerialAssistant
@@ -185,21 +187,13 @@ namespace WPFSerialAssistant
             return enc;
         }
 
-        private bool SerialPortWrite(string textData)
-        {
-            SerialPortWrite(textData, false);
-            return false;
-        }
-
         private string appendContent = "\n";
-        private bool SerialPortWrite(string textData, bool reportEnable)
+        /// <summary>
+        /// 串口写入数据。可选回显（用于手动输入/单条命令）。
+        /// </summary>
+        private bool SerialPortWrite(string textData, bool echoToUI = true)
         {
-            if (serialPort == null)
-            {
-                return false;
-            }
-
-            if (serialPort.IsOpen == false)
+            if (serialPort == null || !serialPort.IsOpen)
             {
                 Alert("串口未打开，无法发送数据。");
                 return false;
@@ -207,9 +201,6 @@ namespace WPFSerialAssistant
 
             try
             {
-                //serialPort.DiscardOutBuffer();
-                //serialPort.DiscardInBuffer();
-
                 if (sendMode == SendMode.Character)
                 {
                     serialPort.Write(textData + appendContent);
@@ -217,31 +208,44 @@ namespace WPFSerialAssistant
                 else if (sendMode == SendMode.Hex)
                 {
                     string[] grp = textData.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
                     List<byte> list = new List<byte>();
-
                     foreach (var item in grp)
-                    {
                         list.Add(Convert.ToByte(item, 16));
-                    }
-             
                     serialPort.Write(list.ToArray(), 0, list.Count);
-                }
-
-                if (reportEnable)
-                {
-                    // 报告发送成功的消息，提示用户。
-                    Information(string.Format("成功发送：{0}。", textData));
                 }
             }
             catch (Exception ex)
             {
-                Alert(ex.Message);
+                Application.Current.Dispatcher.Invoke(() => Alert(ex.Message));
                 return false;
+            }
+
+            // 回显，只能在UI线程
+            if (echoToUI && sendEchoCheckBox != null && sendEchoCheckBox.IsChecked == true)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    string timeStr = DateTime.Now.ToString("[发送 HH:mm:ss.fff]");
+                    Paragraph para = new Paragraph();
+                    Run timeRun = new Run(timeStr + "\n") { Foreground = Brushes.Red };
+                    Run contentRun = new Run(textData + "\n") { Foreground = Brushes.Red };
+                    para.Inlines.Add(timeRun);
+                    para.Inlines.Add(contentRun);
+                    recvDataRichTextBox.Document.Blocks.Add(para);
+                    recvDataRichTextBox.ScrollToEnd();
+                });
             }
 
             return true;
         }
+
+        // 兼容你的老接口，只保留，不建议再直接用
+        private bool SerialPortWrite(string textData)
+        {
+            // 默认回显
+            return SerialPortWrite(textData, true);
+        }
+
 
         #region 定时器
         /// <summary>
