@@ -1,0 +1,41 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build results
+bin/
+obj/
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored if you use Package Restore
+packages/
+
+# Others
+*.log
+*.tlog
+*.cache
+*.pdb
+
+# User-specific files
+*.user
+*.rsuser
+*.sln.docstates
+
+# Build directories for Visual Studio Code
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Rider
+.idea/
+*.sln.iml
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store

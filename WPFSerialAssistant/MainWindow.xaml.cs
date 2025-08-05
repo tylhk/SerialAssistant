@@ -277,13 +277,20 @@ namespace WPFSerialAssistant
             e.Handled = true;
         }
 
+        private string sendFileFullPath = null;
+
         private void FileDropBorder_Drop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string path = files[0];
                 if (files.Length > 0)
-                    filePathTextBlock.Text = files[0];
+                {
+                    filePathTextBlock.Text = System.IO.Path.GetFileName(path); // 只显示文件名
+                    filePathTextBlock.ToolTip = path; // 鼠标悬停显示完整路径
+                    sendFileFullPath = path;         // 保存完整路径
+                }
             }
         }
 
@@ -291,18 +298,22 @@ namespace WPFSerialAssistant
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
             if (dialog.ShowDialog() == true)
-                filePathTextBlock.Text = dialog.FileName;
+            {
+                filePathTextBlock.Text = System.IO.Path.GetFileName(dialog.FileName);
+                filePathTextBlock.ToolTip = dialog.FileName;
+                sendFileFullPath = dialog.FileName;
+            }
         }
 
         private void SendFileButton_Click(object sender, RoutedEventArgs e)
         {
-            string path = filePathTextBlock.Text;
+            string path = sendFileFullPath;
             if (string.IsNullOrWhiteSpace(path) || !System.IO.File.Exists(path))
             {
                 MessageBox.Show("请选择有效的文件！");
                 return;
             }
-            SendFileBySerial(path); // 你自己的串口发送函数
+            SendFileBySerial(path);
         }
 
         private void SendFileBySerial(string filePath)

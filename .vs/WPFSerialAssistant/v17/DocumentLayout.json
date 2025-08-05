@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\selectdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\selectdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|c:\\users\\hp\\documents\\github\\serialassistant\\wpfserialassistant\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|c:\\users\\hp\\documents\\github\\serialassistant\\wpfserialassistant\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\saserialport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\saserialport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\selectdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|solutionrelative:wpfserialassistant\\selectdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DA01B86D-5BC1-4863-BAAC-71B309B09CC0}|WPFSerialAssistant\\WPFSerialAssistant.csproj|C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\wpfserialassistant\\selectdialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SelectDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\SelectDialog.xaml.cs",
               "RelativeDocumentMoniker": "WPFSerialAssistant\\SelectDialog.xaml.cs",
@@ -46,8 +46,7 @@
               "RelativeToolTip": "WPFSerialAssistant\\SelectDialog.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T09:06:28.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T09:06:28.406Z"
             },
             {
               "$type": "Document",
@@ -58,38 +57,36 @@
               "ToolTip": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\SelectDialog.xaml",
               "RelativeToolTip": "WPFSerialAssistant\\SelectDialog.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-01T09:05:51.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-01T09:05:51.188Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SASerialPort.cs",
               "DocumentMoniker": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\SASerialPort.cs",
               "RelativeDocumentMoniker": "WPFSerialAssistant\\SASerialPort.cs",
               "ToolTip": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\SASerialPort.cs",
               "RelativeToolTip": "WPFSerialAssistant\\SASerialPort.cs",
-              "ViewState": "AgIAAKoAAAAAAAAAAAAuwLwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJ0AAAAAAAAAAAAQwL0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T10:09:27.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-27T10:09:27.392Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "WPFSerialAssistant\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\MainWindow.xaml.cs",
               "RelativeToolTip": "WPFSerialAssistant\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAEIBAAAAAAAAAAAIwFMBAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAAADwBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-27T09:53:13.299Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\hp\\Documents\\GitHub\\SerialAssistant\\WPFSerialAssistant\\MainWindow.xaml",
               "RelativeDocumentMoniker": "WPFSerialAssistant\\MainWindow.xaml",

@@ -170,10 +170,10 @@
         Padding="6" AllowDrop="True" Drop="FileDropBorder_Drop" DragOver="FileDropBorder_DragOver" Margin="0,0,0,5" Background="#FFF9F9F9">
                                                     <TextBlock x:Name="filePathTextBlock"
                                                         Text="可以拖拽文件到这里"
-                                                        VerticalAlignment="Center"
-                                                        Width="120"
+                                                        Width="138"
                                                         TextTrimming="CharacterEllipsis"
-                                                        ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"
+                                                        TextAlignment="Center" 
+                                                        ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                     />
                                                 </Border>
                                                 <Button Content="选择文件" Width="80" Click="SelectFileButton_Click" Margin="0,0,0,5"/>
